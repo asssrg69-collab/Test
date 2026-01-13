@@ -1,0 +1,157 @@
+body {
+  background-color: #121215;
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+}
+
+.BoxMain {
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  gap: 40px;
+  height: 50px;
+  background-color: #202020;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  z-index: 1002;
+}
+
+/* Menu Links */
+.PornHub-link, .Rule-link, .Doujin-link, .XXXVideo, .Hentai-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  position: relative;
+  cursor: pointer;
+  top: 2px;
+  z-index: 10;
+}
+
+.Rule-link::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 25px;
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* Underline hover */
+.PornHub-link::after, .Rule-link::after, .Doujin-link::after, .XXXVideo::after, .Hentai-link::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 120%;
+  height: 2px;
+  background-color: #777777;
+  transition: transform 0.3s ease;
+  z-index: 11;
+}
+.PornHub-link:hover::after, .Rule-link:hover::after, .Doujin-link:hover::after, .XXXVideo:hover::after, .Hentai-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Dropdown */
+.dropdown, .dropdown-XXXVideo, .dropdown-Hentai { position: relative; display: inline-block; }
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 140%;
+  left: -10%;
+  background-color: #202020;
+  min-width: 200px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  z-index: 1004;
+  max-height: 0;
+  opacity: 0;
+  overflow-y: auto;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.dropdown.open .dropdown-menu,
+.dropdown-XXXVideo.open .dropdown-menu,
+.dropdown-Hentai.open .dropdown-menu {
+  max-height: 320px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu a { color: #fff; text-decoration: none; padding: 10px 15px; transition: 0.2s; }
+.dropdown-menu a:hover { background-color: #333; }
+
+a span.arrow {
+  display: inline-block;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+.dropdown.open > a span.arrow,
+.dropdown-XXXVideo.open > a span.arrow,
+.dropdown-Hentai.open > a span.arrow {
+  transform: rotate(180deg);
+}
+
+/* Scrollbar */
+.dropdown-menu::-webkit-scrollbar { width: 8px; }
+.dropdown-menu::-webkit-scrollbar-track { background: #202020; border-radius: 6px; }
+.dropdown-menu::-webkit-scrollbar-thumb { background-color: #555; border-radius: 6px; border: 2px solid #202020; }
+.dropdown-menu::-webkit-scrollbar-thumb:hover { background-color: #888; }
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #1e1e1e;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+  transition: left 0.3s ease;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1000;
+}
+.sidebar.open { left: 0; }
+
+.sidebar-scroll { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+.sidebar-bottom { display: flex; flex-direction: column; gap: 6px; padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+.sidebar a { display: flex; align-items: center; gap: 12px; color: #ccc; padding: 12px 16px; text-decoration: none; margin: 6px 0; border-radius: 6px; transition: all 0.25s ease; }
+.sidebar a:hover { background-color: #333; color: #fff; }
+
+.social-link img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.25s, transform 0.25s; }
+
+.social-link.discord:hover { color: #5865F2; background-color: rgba(88,101,242,0.15); }
+.social-link.discord:hover img { filter: invert(50%) sepia(90%) saturate(300%) hue-rotate(210deg) brightness(1.2); }
+
+.social-link.youtube:hover { color: #FF0000; background-color: rgba(255,0,0,0.15); }
+.social-link.youtube:hover img { filter: invert(75%) sepia(500%) saturate(3000%) hue-rotate(0deg) brightness(1.2); }
+
+/* Menu button */
+.menu-button {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 36px;
+  height: 36px;
+  color: white;
+  cursor: pointer;
+  z-index: 1003;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: transform 0.4s ease;
+}
+.menu-button:hover { box-shadow: 0 0 0 2px white; background-color: rgba(255,255,255,0.1); }
+.menu-button.active { transform: rotate(90deg); }
